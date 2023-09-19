@@ -1,8 +1,8 @@
 import { Alert, Box, Button, Container, TextField, Typography } from '@mui/material'
 import React from 'react'
 import { useState, useEffect } from 'react';
-
-
+import MenuCatalogo from './Menu'
+import Style from "./menu.module.css"
 
 function Filmes() {
         const [titulo, setTitulo] = useState( "" );
@@ -61,6 +61,8 @@ function Filmes() {
         }, [ cadastro ] );
 
   return (
+    <>
+    <MenuCatalogo></MenuCatalogo>
    <Container component="section" maxWidth="sm">
     <Box sx={{
                 mt:5,
@@ -71,9 +73,9 @@ function Filmes() {
                 flexDirection: "column",
                 alignItems: "center",
             }}>
-                <Typography component="h1" variant='h4'>Filmes</Typography>
+                <Typography component="h1" variant='h4'>Filmes da Greta Gerwig</Typography>
             { erro && ( <Alert severity="warning" sx={{ mt: 2, mb: 2 }}>Desculpe tente novamente, por favor.</Alert>)}
-            {cadastro && ( <Alert severity="success" sx={{ mt: 2, mb: 2 }}>Obrigado por cadastrar.</Alert>)}
+            {cadastro && ( <Alert severity="success" sx={{ mt: 2, mb: 2 }}>Obrigado por cadastrar sua era predileta.</Alert>)}
                 <Box component="form" onSubmit={CadastrarFilme}>
                 <TextField
                 type="text" 
@@ -122,18 +124,19 @@ function Filmes() {
                 />
                 <TextField
                 type="text" 
-                label="Url da imagem" 
+                label="Atriz principal" 
                 variant="filled" 
                 margin="normal"
                 value={imagem}
                 onChange={ (e) => setImagem( e.target.value )}
                 fullWidth
                 />
-                <Button  type="submit" variant="contained" fullWidth sx={ {mt: 2, mb: 2} }>Cadastrar filme</Button>
+                <Button type="submit" variant="contained" fullWidth sx={ {mt: 2, mb: 2} }>Cadastrar filme</Button>
                 </Box>
 
     </Box>
    </Container>
+   </>
   )
 }
 

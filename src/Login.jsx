@@ -1,8 +1,8 @@
 import { Alert, Box, Button, Checkbox, Container, FormControlLabel, Grid, TextField, Typography } from '@mui/material';
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useNavigate, json } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
+import MenuCatalogo from './Menu'
 
 
 function Login() {
@@ -14,8 +14,6 @@ function Login() {
   const [ erro, setErro ] = useState( false );
   const navigate = useNavigate();
 
-
-    /*  */
   useEffect( () => {
 
     if( login ) {
@@ -56,6 +54,8 @@ function Login() {
   }
 
   return (
+    <>
+    <MenuCatalogo></MenuCatalogo>
     <Container component="section" maxWidth="xs" >
         <Box 
         sx={{ 
@@ -99,12 +99,13 @@ function Login() {
                         Esqueci a senha
                     </Grid>
                     <Grid item>
-                        Cadastrar
+                        <a href='http://localhost:3000/cadastro'>Cadastrar</a>
                     </Grid>
                 </Grid>
             </Box>
         </Box>
     </Container>
+    </>
   )
 }
 

@@ -1,5 +1,6 @@
 import { Alert, Box, Button, Container, TextField, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
+import MenuCatalogo from './Menu'
 
 function Cadastro() {
 
@@ -55,6 +56,8 @@ function Cadastro() {
   }, [ cadastro ] );
 
   return (
+    <>
+    <MenuCatalogo></MenuCatalogo>
     <Container component="section" maxWidth="sm">
         <Box sx={{ 
             mt: 10,
@@ -65,9 +68,9 @@ function Cadastro() {
             flexDirection: "column",
             alignItems: "center"
         }}>
-            <Typography component="h1" variant='h4'>Cadastrar</Typography>
-            { erro && ( <Alert severity="warning" sx={{ mt: 2, mb: 2 }} >Desculpe tente novamente</Alert> ) }
-            { cadastro && ( <Alert severity="success" sx={{ mt: 2, mb: 2 }}>Obrigado por se cadastrar</Alert>)}
+            <Typography component="h1" variant='h4'>Cadastrar-se</Typography>
+            { erro && ( <Alert severity="warning" sx={{ mt: 2, mb: 2 }} >Desculpe, tente novamente.</Alert> ) }
+            { cadastro && ( <Alert severity="success" sx={{ mt: 2, mb: 2 }}>Obrigada por se cadastrar!</Alert>)}
             <Box component="form" onSubmit={Cadastrar}>
                 <TextField 
                   type="text"
@@ -91,7 +94,7 @@ function Cadastro() {
                 />
                 <TextField 
                   type="text"
-                  label="CPF" 
+                  label="Idade" 
                   variant="filled" 
                   margin="normal"
                   value={cpf}
@@ -123,6 +126,7 @@ function Cadastro() {
             </Box>
         </Box>
     </Container>
+    </>
   )
 }
 

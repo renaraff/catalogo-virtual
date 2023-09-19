@@ -7,23 +7,30 @@ import Login from './Login';
 import Cadastro from "./Cadastro";
 import Filmes from './Filmes';
 import EditaFilme from './EditaFilme';
+import "./App.css"
+import Sobre from './Sobre';
 
 const theme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#b53f8c',
+      main: '#e862a9',
     },
     secondary: {
-      main: '#ff0081',
+      main: '#ce277b',
     },
     warning: {
-      main: '#ff21b1',
+      main: '#9e218e',
     },
     info: {
-      main: '#a2a2a2',
+      main: '#ececec',
     },
-    
+    success: {
+      main: '#d23c88',
+    },
+    error: {
+      main: '#c951a0',
+    },
   },
 });
 
@@ -47,6 +54,11 @@ const router = createBrowserRouter([
   {
     path: "/edicao/:id",
     element: <EditaFilme />
+  }
+  ,
+  {
+    path: "/sobre",
+    element: <Sobre />
   }
 ]);
 
