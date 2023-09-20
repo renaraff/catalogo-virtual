@@ -1,4 +1,4 @@
-import { Alert, Box, Button, Container, TextField, Typography } from '@mui/material'
+import { Alert, Box, Button, Card, Container, TextField, Typography } from '@mui/material'
 import React from 'react'
 import { useState, useEffect } from 'react';
 import MenuCatalogo from './Menu'
@@ -19,7 +19,7 @@ function Filmes() {
     function CadastrarFilme(evento){
         evento.preventDefault();
 
-    fetch( process.env.REACT_APP_BACKEND + "filmes", {
+    fetch( process.env.REACT_APP_BACKEND + "produtos", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -31,7 +31,8 @@ function Filmes() {
                     ano: ano,
                     duracao: duracao,
                     categoria: categoria,
-                    imagem: imagem
+                    imagem: imagem,
+                    usuario:localStorage.getItem( "usuario" )
                 }
                 )
             } )
@@ -49,33 +50,25 @@ function Filmes() {
             .catch( (erro) => { setErro( true ) })
     }
     
-        useEffect( () => {
-    
-            setTitulo( "" );
-            setDescricao( "" );
-            setAno( "" );
-            setDuracao( "" );
-            setCategoria( "" );
-            setImagem( "" );
-          
-        }, [ cadastro ] );
+     
 
   return (
     <>
     <MenuCatalogo></MenuCatalogo>
    <Container component="section" maxWidth="sm">
-    <Box sx={{
-                mt:5,
-                background: "#dce0e6",
+    <Card sx={{
+                mt:1,
+                background: "#f0f0f0",
                 padding: "30px",
                 borderRadius: "10px",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
+                mb:0.5
             }}>
-                <Typography component="h1" variant='h4'>Filmes da Greta Gerwig</Typography>
+                <Typography component="h1" variant='h4' sx={{ color: "#f12598" }}>Filmes da Greta Gerwig</Typography>
             { erro && ( <Alert severity="warning" sx={{ mt: 2, mb: 2 }}>Desculpe tente novamente, por favor.</Alert>)}
-            {cadastro && ( <Alert severity="success" sx={{ mt: 2, mb: 2 }}>Obrigado por cadastrar sua era predileta.</Alert>)}
+            {cadastro && ( <Alert severity="success" sx={{ mt: 2, mb: 2 }}>Obrigada por cadastrar o filme.</Alert>)}
                 <Box component="form" onSubmit={CadastrarFilme}>
                 <TextField
                 type="text" 
@@ -85,19 +78,21 @@ function Filmes() {
                 value={titulo}
                 onChange={ (e) => setTitulo( e.target.value )}
                 fullWidth
+                required
                 />
                 <TextField
                 type="text" 
-                label="Descrição" 
+                label="Atriz Principal" 
                 variant="filled" 
                 margin="normal"
                 value={descricao}
                 onChange={ (e) => setDescricao( e.target.value )}
                 fullWidth
+                required
                 />
                 <TextField
-                type="number" 
-                label="Ano" 
+                type="text" 
+                label="Review do filme" 
                 variant="filled" 
                 margin="normal"
                 value={ano}
@@ -112,6 +107,7 @@ function Filmes() {
                 value={duracao}
                 onChange={ (e) => setDuracao( e.target.value )}
                 fullWidth
+                required
                 />
                 <TextField
                 type="text" 
@@ -121,20 +117,22 @@ function Filmes() {
                 value={categoria}
                 onChange={ (e) => setCategoria( e.target.value )}
                 fullWidth
+                required
                 />
                 <TextField
                 type="text" 
-                label="Atriz principal" 
+                label="Url da Imagem" 
                 variant="filled" 
                 margin="normal"
                 value={imagem}
                 onChange={ (e) => setImagem( e.target.value )}
                 fullWidth
+                required
                 />
                 <Button type="submit" variant="contained" fullWidth sx={ {mt: 2, mb: 2} }>Cadastrar filme</Button>
-                </Box>
+            </Box>
 
-    </Box>
+    </Card>
    </Container>
    </>
   )

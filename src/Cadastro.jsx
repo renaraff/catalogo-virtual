@@ -1,4 +1,4 @@
-import { Alert, Box, Button, Container, TextField, Typography } from '@mui/material';
+import { Alert, Box, Button, Card, Container, TextField, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import MenuCatalogo from './Menu'
 
@@ -15,7 +15,7 @@ function Cadastro() {
   function Cadastrar( evento ) {
 
     evento.preventDefault();
-    fetch(  process.env.REACT_APP_BACKEND + "users", {
+    fetch(  process.env.REACT_APP_BACKEND + "usuarios", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -51,17 +51,15 @@ function Cadastro() {
     setCpf( "" );
     setTelefone( "" );
     setSenha( "" );
-    //setCadstro( false );
-
   }, [ cadastro ] );
 
   return (
     <>
     <MenuCatalogo></MenuCatalogo>
     <Container component="section" maxWidth="sm">
-        <Box sx={{ 
-            mt: 10,
-            backgroundColor: "#EDEDED",
+        <Card sx={{ 
+            mt: 2,
+            backgroundColor: "#f0f0f0",
             padding: "30px",
             borderRadius: "10px",
             display: "flex",
@@ -94,7 +92,7 @@ function Cadastro() {
                 />
                 <TextField 
                   type="text"
-                  label="Idade" 
+                  label="CPF" 
                   variant="filled" 
                   margin="normal"
                   value={cpf}
@@ -124,7 +122,7 @@ function Cadastro() {
                 />
                 <Button type="submit" variant="contained" size="large" fullWidth sx={{ mt:2, mb: 2}}>Cadastrar</Button>
             </Box>
-        </Box>
+        </Card>
     </Container>
     </>
   )

@@ -71,16 +71,16 @@ function MenuCatalogo() {
              }}
             >
          <MenuItem key="Minha Conta" onClick={handleCloseUserMenu}>
-              <Typography textAlign="center"><a href='#' >Minha Conta</a></Typography>
+              <Typography textAlign="center"><a href='/filmes'>Cadastro de Filmes</a></Typography>
             </MenuItem>
             <MenuItem key="Entrar" onClick={handleCloseUserMenu}>
-              <Typography textAlign="center"><a href='/login'>Entrar</a></Typography>
+              <Typography textAlign="center"><a href='/login'>Entrar             </a></Typography>
             </MenuItem>
             <MenuItem key="Cadastrar" onClick={handleCloseUserMenu}>
-              <Typography textAlign="center"><a href='/cadastro'>Cadastrar</a></Typography>
+              <Typography textAlign="center"><a href='/cadastro'>Cadastrar       </a></Typography>
             </MenuItem>
             <MenuItem key="Sair" onClick={handleCloseUserMenu}>
-              <Typography textAlign="center"><a href='#'>Sair</a></Typography>
+              <Typography textAlign="center"><a href='#'>Sair                    </a></Typography>
             </MenuItem>
             </Menu>
           </Box>
@@ -99,14 +99,15 @@ function MenuCatalogo() {
                     </Button>
                     <Button
                     className={Style.button}
+                    href='http://localhost:3000/filmes'
                       onClick={handleCloseNavMenu}
                       sx={{ my: 2, ml: 25, color: 'white', display: 'block' }}>
-                        PRÊMIOS
+                        CADASTRE FILMES
                     </Button>    
                 </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            <Tooltip title="Abrir SubMenu">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Renara" src="/static/images/avatar/2.jpg" />
               </IconButton>
@@ -128,16 +129,16 @@ function MenuCatalogo() {
               onClose={handleCloseUserMenu}
             >
 <MenuItem key="Minha Conta" onClick={handleCloseUserMenu}>
-              <Typography textAlign="center"><a href='#' >Minha Conta</a></Typography>
+              <Typography textAlign="center"><a href='/filmes'>Cadastro de Filmes</a></Typography>
             </MenuItem>
             <MenuItem key="Entrar" onClick={handleCloseUserMenu}>
-              <Typography textAlign="center"><a href='/login'>Entrar</a></Typography>
+              <Typography textAlign="center"><a href='/login'>Entrar             </a></Typography>
             </MenuItem>
             <MenuItem key="Cadastrar" onClick={handleCloseUserMenu}>
-              <Typography textAlign="center"><a href='/cadastro'>Cadastrar</a></Typography>
+              <Typography textAlign="center"><a href='/cadastro'>Cadastrar       </a></Typography>
             </MenuItem>
             <MenuItem key="Sair" onClick={handleCloseUserMenu}>
-              <Typography textAlign="center"><a href='#'>Sair</a></Typography>
+              <Typography textAlign="center"><a href='#'>Sair                     </a></Typography>
             </MenuItem>
             </Menu>
             </Box>

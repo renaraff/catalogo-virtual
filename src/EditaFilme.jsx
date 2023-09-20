@@ -1,4 +1,4 @@
-import { Alert, Box, Button, Container, TextField, Typography } from '@mui/material';
+import { Alert, Box, Button, Container, TextField, Card } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import MenuCatalogo from './Menu'
@@ -17,7 +17,8 @@ function EditaFilme() {
     const [erro, setErro] = useState(false);
 
     useEffect(() => {
-        fetch(process.env.REACT_APP_BACKEND + "filmes/" + id, {
+        const usuario = localStorage.getItem("usuario")
+        fetch(process.env.REACT_APP_BACKEND + "produtos/" + usuario + "/" + id, {
             method: "GET",
             headers: {
                 'Content-Type': 'application/json'
@@ -43,7 +44,7 @@ function EditaFilme() {
 
     function Editar(evento) {
         evento.preventDefault();
-        fetch(process.env.REACT_APP_BACKEND + "filmes", {
+        fetch(process.env.REACT_APP_BACKEND + "produtos", {
             method: "PUT",
             headers: {
                 'Content-Type': 'application/json'
@@ -56,7 +57,8 @@ function EditaFilme() {
                     ano: ano,
                     duracao: duracao,
                     categoria: categoria,
-                    imagem: imagem
+                    imagem: imagem,
+                    usuario: localStorage.getItem("usuario")
                 }
             )
         })
@@ -66,7 +68,7 @@ function EditaFilme() {
                     setEditar(true);
                     setErro(false);
                 } else {
-                    setErro("Não foi possível processar sua requisição");
+                    setErro("Não foi possível processar sua requisição.");
                     setEditar(false);
                 }
             })
@@ -80,9 +82,9 @@ function EditaFilme() {
         <>
         <MenuCatalogo></MenuCatalogo>
         <Container component="section" maxWidth="sm">
-            <Box sx={{
-                mt: 5,
-                background: "#dce0e6",
+            <Card sx={{
+                mt: 0.8,
+                background: "#f0f0f0",
                 padding: "30px",
                 borderRadius: "10px",
                 display: "flex",
@@ -104,7 +106,7 @@ function EditaFilme() {
                     />
                     <TextField
                         type="text"
-                        label="Descrição"
+                        label="Atriz Principal"
                         variant="filled"
                         margin="normal"
                         value={descricao}
@@ -112,8 +114,8 @@ function EditaFilme() {
                         fullWidth
                     />
                     <TextField
-                        type="number"
-                        label="Ano"
+                        type="text"
+                        label="Review"
                         variant="filled"
                         margin="normal"
                         value={ano}
@@ -121,7 +123,7 @@ function EditaFilme() {
                         fullWidth
                     />
                     <TextField
-                        type="number"
+                        type="text"
                         label="Duração"
                         variant="filled"
                         margin="normal"
@@ -140,16 +142,16 @@ function EditaFilme() {
                     />
                     <TextField
                         type="text"
-                        label="Url da imagem"
+                        label="Url da Imagem"
                         variant="filled"
                         margin="normal"
                         value={imagem}
                         onChange={(e) => setImagem(e.target.value)}
                         fullWidth
                     />
-                    <Button type="submit" variant="contained" size="large" fullWidth sx={{ mt: 2, mb: 2 }}>Editar</Button>
+                    <Button type="submit" variant="contained" size="large" fullWidth sx={{ mt: 2, mb: 2 }}>Editar Filme</Button>
                 </Box>
-            </Box>
+            </Card>
         </Container>
     </>
     )

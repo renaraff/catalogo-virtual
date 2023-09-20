@@ -1,4 +1,4 @@
-import { Alert, Box, Button, Checkbox, Container, FormControlLabel, Grid, TextField, Typography } from '@mui/material';
+import { Alert, Box, Button, Card, Checkbox, Container, FormControlLabel, Grid, TextField, Typography } from '@mui/material';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -17,7 +17,6 @@ function Login() {
   useEffect( () => {
 
     if( login ) {
-        localStorage.setItem( "usuario" , JSON.stringify( {email: email } ) );
         setEmail( "" );
         setSenha( "" );
         navigate( "/" );
@@ -44,8 +43,11 @@ function Login() {
     .then( ( json ) => {
 
         if( json.user ) {
+            localStorage.setItem( "usuario" , JSON.stringify( json.user._id ) );
             setLogin( true );
+
         } else {
+            localStorage.removeItem( "usuario" );
             setErro( true );
         }
     } )
@@ -57,10 +59,10 @@ function Login() {
     <>
     <MenuCatalogo></MenuCatalogo>
     <Container component="section" maxWidth="xs" >
-        <Box 
+        <Card 
         sx={{ 
             mt: 10,
-            backgroundColor: "#EDEDED",
+            backgroundColor: "#f0f0f0",
             padding: "30px",
             borderRadius: "10px",
             display: "flex",
@@ -68,7 +70,7 @@ function Login() {
             alignItems: "center"
         }}
         >
-            <Typography component="h1" variant='h4'>Entrar</Typography>
+            <Typography component="h1" variant='h4'  sx={{ color: "#f12598" }}>Entrar</Typography>
             { erro && ( <Alert severity="warning" sx={{ mt: 2, mb: 2 }}>Revise seus dados e tente novamente</Alert> ) }
             <Box component="form" onSubmit={Autenticar}>
                 <TextField 
@@ -103,7 +105,7 @@ function Login() {
                     </Grid>
                 </Grid>
             </Box>
-        </Box>
+        </Card>
     </Container>
     </>
   )
